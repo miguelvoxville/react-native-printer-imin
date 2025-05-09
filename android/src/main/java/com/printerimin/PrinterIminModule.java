@@ -1,6 +1,6 @@
 package com.printerimin;
 
-
+import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -2031,7 +2031,12 @@ public class PrinterIminModule extends ReactContextBaseJavaModule {
     mBroadcastReceiver = createChargingStateBroadcastReceiver();
     intentFilter.addAction(ACTION_PRITER_STATUS_CHANGE);
     intentFilter.addAction(ACTION_POGOPIN_STATUS_CHANGE);
-    getReactApplicationContext().registerReceiver(mBroadcastReceiver, intentFilter);
+    ContextCompat.registerReceiver(
+    getReactApplicationContext(),
+    mBroadcastReceiver,
+    intentFilter,
+    ContextCompat.RECEIVER_NOT_EXPORTED
+);
   }
 
   @ReactMethod
